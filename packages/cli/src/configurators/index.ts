@@ -32,6 +32,7 @@ import { configureCodebuddy } from "./codebuddy.js";
 import { configureCopilot } from "./copilot.js";
 import { configureDroid } from "./droid.js";
 import { configurePi, collectPiTemplates } from "./pi.js";
+import { configureOmp, collectOmpTemplates } from "./omp.js";
 
 // Shared utilities
 import {
@@ -446,6 +447,10 @@ const PLATFORM_FUNCTIONS: Record<AITool, PlatformFunctions> = {
   pi: {
     configure: configurePi,
     collectTemplates: () => collectPiTemplates(),
+  },
+  omp: {
+    configure: configureOmp,
+    collectTemplates: () => collectOmpTemplates(),
   },
 };
 

@@ -21,7 +21,8 @@ export type AITool =
   | "codebuddy"
   | "copilot"
   | "droid"
-  | "pi";
+  | "pi"
+  | "omp";
 
 /**
  * Template directory categories
@@ -41,7 +42,8 @@ export type TemplateDir =
   | "codebuddy"
   | "copilot"
   | "droid"
-  | "pi";
+  | "pi"
+  | "omp";
 
 /**
  * CLI flag names for platform selection (e.g., --claude, --cursor, --kilo, --kiro, --gemini, --antigravity)
@@ -61,7 +63,8 @@ export type CliFlag =
   | "codebuddy"
   | "copilot"
   | "droid"
-  | "pi";
+  | "pi"
+  | "omp";
 
 /**
  * Template context for placeholder resolution.
@@ -365,6 +368,22 @@ export const AI_TOOLS: Record<AITool, AIToolConfig> = {
       agentCapable: true,
       hasHooks: true,
       cliFlag: "pi",
+    },
+  },
+  omp: {
+    name: "Oh My Pi",
+    templateDirs: ["common", "omp"],
+    configDir: ".omp",
+    cliFlag: "omp",
+    defaultChecked: false,
+    hasPythonHooks: false,
+    templateContext: {
+      cmdRefPrefix: "/trellis:",
+      executorAI: "Bash scripts or Task calls",
+      userActionLabel: "Slash commands",
+      agentCapable: true,
+      hasHooks: true,
+      cliFlag: "omp",
     },
   },
 };

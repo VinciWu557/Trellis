@@ -8,7 +8,7 @@
 
 <p align="center">
 <strong>Make AI coding reliable at team scale.</strong><br/>
-<sub>A team AI coding harness for progressive specs, custom workflows, task context, and memory across Claude Code, Cursor, OpenCode, Codex, Kiro, Kilo, Gemini CLI, Antigravity, Windsurf, Qoder, CodeBuddy, GitHub Copilot, Droid, and Pi Agent.</sub>
+<sub>A team AI coding harness for progressive specs, custom workflows, task context, and memory across Claude Code, Cursor, OpenCode, Codex, Kiro, Kilo, Gemini CLI, Antigravity, Windsurf, Qoder, CodeBuddy, GitHub Copilot, Droid, Pi Agent, and Oh My Pi.</sub>
 </p>
 
 <p align="center">
@@ -44,7 +44,7 @@
 | **Task-centered workflow** | Keep PRDs, implementation context, review context, and task status in `.trellis/tasks/` so AI work stays structured. |
 | **Project memory** | Journals in `.trellis/workspace/` preserve what happened last time, so each new session starts with real context. |
 | **Team-shared standards** | Specs live in the repo, so one person's hard-won workflow or rule can benefit the whole team. |
-| **Multi-platform setup** | Bring the same Trellis structure to 14 AI coding platforms instead of rebuilding your workflow per tool. |
+| **Multi-platform setup** | Bring the same Trellis structure to 15 AI coding platforms instead of rebuilding your workflow per tool. |
 
 ## Prerequisites:
 

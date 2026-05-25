@@ -8,7 +8,7 @@
 
 <p align="center">
 <strong>给 AI 立规矩的开源框架</strong><br/>
-<sub>支持 Claude Code、Cursor、OpenCode、Codex、Kiro、Kilo、Gemini CLI、Antigravity、Windsurf、Qoder、CodeBuddy、GitHub Copilot、Droid 和 Pi Agent。</sub>
+<sub>支持 Claude Code、Cursor、OpenCode、Codex、Kiro、Kilo、Gemini CLI、Antigravity、Windsurf、Qoder、CodeBuddy、GitHub Copilot、Droid、Pi Agent 和 Oh My Pi。</sub>
 </p>
 
 <p align="center">
@@ -44,7 +44,7 @@
 | **任务驱动工作流** | PRD、实现上下文、审查上下文与任务状态统一存放于 `.trellis/tasks/`，AI 开发过程保持结构化、可追溯。 |
 | **项目记忆** | `.trellis/workspace/` 中的工作日志（journal）会保留上一次会话的脉络，因此每次新会话都能基于真实上下文开始。 |
 | **团队共享标准** | Spec 随仓库一同版本化，个人总结出的规则与流程可以直接成为整个团队的基础设施。 |
-| **多平台复用** | 同一套 Trellis 结构覆盖 14 个 AI coding 平台，无需为每个工具单独搭建工作流。 |
+| **多平台复用** | 同一套 Trellis 结构覆盖 15 个 AI coding 平台，无需为每个工具单独搭建工作流。 |
 
 ## 前置要求
 

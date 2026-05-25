@@ -942,6 +942,7 @@ interface InitOptions {
   copilot?: boolean;
   droid?: boolean;
   pi?: boolean;
+  omp?: boolean;
   yes?: boolean;
   user?: string;
   force?: boolean;

@@ -75,6 +75,7 @@ program
   .option("--copilot", "Include GitHub Copilot hooks")
   .option("--droid", "Include Factory Droid commands")
   .option("--pi", "Include Pi Agent extension assets")
+  .option("--omp", "Include Oh My Pi extension assets")
   .option("-y, --yes", "Skip prompts and use defaults")
   .option(
     "-u, --user <name>",

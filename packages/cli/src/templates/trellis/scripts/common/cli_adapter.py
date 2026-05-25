@@ -53,6 +53,7 @@ Platform = Literal[
     "copilot",
     "droid",
     "pi",
+    "omp",
 ]
 
 
@@ -127,6 +128,8 @@ class CLIAdapter:
             return ".factory"
         elif self.platform == "pi":
             return ".pi"
+        elif self.platform == "omp":
+            return ".omp"
         else:
             return ".claude"
 
@@ -184,6 +187,17 @@ class CLIAdapter:
                     filename = filename[:-3]
                 return prompts_dir / f"trellis-{filename}.md"
             return prompts_dir / Path(*parts)
+        if self.platform == "omp":
+            commands_dir = self.get_config_dir(project_root) / "commands"
+            if not parts:
+                return commands_dir
+            if len(parts) >= 2 and parts[0] == "trellis":
+                filename = parts[-1]
+                if filename.endswith(".md"):
+                    filename = filename[:-3]
+                return commands_dir / f"trellis-{filename}.md"
+            return commands_dir / Path(*parts)
+
 
         if self.platform == "windsurf":
             workflow_dir = self.get_config_dir(project_root) / "workflows"
@@ -268,6 +282,8 @@ class CLIAdapter:
             return f".factory/commands/trellis/{name}.md"
         elif self.platform == "pi":
             return f".pi/prompts/trellis-{name}.md"
+        elif self.platform == "omp":
+            return f".omp/commands/trellis-{name}.md"
         else:
             return f"{self.config_dir_name}/commands/trellis/{name}.md"
 
@@ -304,6 +320,8 @@ class CLIAdapter:
         elif self.platform == "droid":
             return {}
         elif self.platform == "pi":
+            return {}
+        elif self.platform == "omp":
             return {}
         else:
             return {"CLAUDE_NON_INTERACTIVE": "1"}
@@ -390,6 +408,10 @@ class CLIAdapter:
             )
         elif self.platform == "pi":
             cmd = ["pi", "-p", prompt]
+        elif self.platform == "omp":
+            raise ValueError(
+                "OMP uses native task tool for agent runs; CLI agent run is not supported."
+            )
 
         else:  # claude
             cmd = ["claude", "-p"]
@@ -456,6 +478,10 @@ class CLIAdapter:
             )
         elif self.platform == "pi":
             return ["pi", "-c", session_id]
+        elif self.platform == "omp":
+            raise ValueError(
+                "OMP uses native task tool for agent runs; CLI resume is not supported."
+            )
         else:
             return ["claude", "--resume", session_id]
 
@@ -530,6 +556,8 @@ class CLIAdapter:
             return "droid"
         elif self.platform == "pi":
             return "pi"
+        elif self.platform == "omp":
+            return "omp"
         else:
             return "claude"
 
@@ -618,9 +646,10 @@ def get_cli_adapter(platform: str = "claude") -> CLIAdapter:
         "copilot",
         "droid",
         "pi",
+        "omp",
     ):
         raise ValueError(
-            f"Unsupported platform: {platform} (must be 'claude', 'opencode', 'cursor', 'iflow', 'codex', 'kilo', 'kiro', 'gemini', 'antigravity', 'windsurf', 'qoder', 'codebuddy', 'copilot', 'droid', or 'pi')"
+            f"Unsupported platform: {platform} (must be 'claude', 'opencode', 'cursor', 'iflow', 'codex', 'kilo', 'kiro', 'gemini', 'antigravity', 'windsurf', 'qoder', 'codebuddy', 'copilot', 'droid', 'pi', or 'omp')"
         )
 
     return CLIAdapter(platform=platform)  # type: ignore
@@ -642,6 +671,7 @@ _ALL_PLATFORM_CONFIG_DIRS = (
     ".github/copilot",
     ".factory",
     ".pi",
+    ".omp",
 )
 """Platform-specific config directory names used by detect_platform exclusion
 checks. `.agents/skills/` is NOT listed here: it is a shared cross-platform
@@ -704,6 +734,7 @@ def detect_platform(project_root: Path) -> Platform:
         "copilot",
         "droid",
         "pi",
+        "omp",
     ):
         return env_platform  # type: ignore
 
@@ -776,6 +807,10 @@ def detect_platform(project_root: Path) -> Platform:
     # Check for .pi directory (Pi Agent-specific)
     if (project_root / ".pi").is_dir():
         return "pi"
+
+    # Check for .omp directory (OMP-specific)
+    if (project_root / ".omp").is_dir():
+        return "omp"
 
     # Fallback: checkout only has the Codex shared-skills layer
     # (.agents/skills/trellis-* dirs) and no explicit platform config dir.
